@@ -47,6 +47,10 @@ func CreateCharacter(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	if err := model.ValidateCharacterData(&character); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 	database.DB.Create(&character)
 	context.JSON(http.StatusOK, character)
 }
@@ -65,6 +69,10 @@ func UpdateCharacter(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	if err := model.ValidateCharacterData(&character); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 	database.DB.Model(&character).UpdateColumns(character)
 	context.JSON(http.StatusOK, character)
 }
@@ -73,12 +81,6 @@ func DeleteCharacter(context *gin.Context) {
 	var character model.Character
 	id := context.Params.ByName("id")
 	database.DB.Delete(&character, id)
-	if character.ID == 0 {
-		context.JSON(http.StatusNotFound, gin.H{
-			"fail": "Character not found",
-		})
-		return
-	}
 	context.JSON(http.StatusOK, gin.H{
 		"removed": "character removed",
 	})
