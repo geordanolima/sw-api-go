@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "932a9515-9ded-4519-9c2a-4dca3b1e6130",
+		"name": "sw-api-go",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2785321",
+		"_collection_link": "https://geolima.postman.co/workspace/New-Team-Workspace~325f1677-ff8d-4325-a117-92fb39900865/collection/2785321-932a9515-9ded-4519-9c2a-4dca3b1e6130?action=share&source=collection_link&creator=2785321"
+	},
+	"item": [
+		{
+			"name": "Character",
+			"item": [
+				{
+					"name": "get all characters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/character",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"character"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get character for id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/character/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"character",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search character for name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/character/search/Dart Vader",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"character",
+								"search",
+								"Dart Vader"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove character",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/character/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"character",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create character",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Darth Vader\",\r\n    \"description\": \"Lord Sith\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/character",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"character"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update character",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Darth Vader\",\r\n    \"description\": \"Lord Sith\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/character/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"character",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hello there",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/Mester Kenobi",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"Mester Kenobi"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,1 +1,1 @@
-api sw Golang
+Created a simple api for study, in Golang using Gorm and Gin
