@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -94,4 +95,21 @@ func TestDeleteCharacter(test *testing.T) {
 	result := httptest.NewRecorder()
 	request.ServeHTTP(result, req)
 	assert.Equal(test, http.StatusOK, result.Code)
+}
+
+func TestUpdateCharacter(test *testing.T) {
+	database.ConectDB()
+	CreateMockCharacter()
+	defer DeleteMockCharacter()
+	request := setupTestsRoutes()
+	request.PATCH("/character/:id", controller.UpdateCharacter)
+	character := model.Character{Name: "Jar Jar Brinks", Description: "is a Gungan"}
+	characterJson, _ := json.Marshal(character)
+	req, _ := http.NewRequest("PATCH", "/character/"+strconv.Itoa(Id), bytes.NewBuffer(characterJson))
+	result := httptest.NewRecorder()
+	request.ServeHTTP(result, req)
+	var updatedCharacter model.Character
+	json.Unmarshal(result.Body.Bytes(), &updatedCharacter)
+	assert.Equal(test, http.StatusOK, result.Code)
+	assert.Equal(test, "Jar Jar Brinks", updatedCharacter.Name)
 }

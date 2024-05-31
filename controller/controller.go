@@ -86,3 +86,15 @@ func DeleteCharacter(context *gin.Context) {
 	})
 
 }
+
+func ViewIndexPage(context *gin.Context) {
+	var characters []model.Character
+	database.DB.Find(&characters)
+	context.HTML(http.StatusOK, "index.html", gin.H{
+		"characters": characters,
+	})
+}
+
+func NotFoundPage(context *gin.Context) {
+	context.HTML(http.StatusNotFound, "404.html", nil)
+}
